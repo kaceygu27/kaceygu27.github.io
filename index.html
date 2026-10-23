@@ -55,6 +55,14 @@ h1{font:600 clamp(38px,6vw,60px)/1.08 var(--serif);margin:10px 0 18px;letter-spa
 .tagline{font-size:19px;color:var(--muted);max-width:34em;margin:0 0 26px}
 .cta{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);text-decoration:none;font-weight:500;font-size:14px}
+.mail{position:relative}
+.mail summary{list-style:none;cursor:pointer}
+.mail summary::-webkit-details-marker{display:none}
+.mail-menu{position:absolute;left:0;top:calc(100% + 8px);z-index:30;min-width:230px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px -20px rgba(0,0,0,.35);padding:6px;display:flex;flex-direction:column}
+.contact .mail-menu{left:50%;transform:translateX(-50%)}
+.mail-addr{font-size:13px;color:var(--muted);padding:8px 12px 6px;border-bottom:1px solid var(--line);margin-bottom:4px;user-select:all}
+.mail-menu a,.mail-menu button{display:block;text-align:left;font:500 14px var(--sans);color:var(--ink);text-decoration:none;padding:9px 12px;border-radius:8px;border:0;background:none;cursor:pointer}
+.mail-menu a:hover,.mail-menu button:hover{background:var(--chip);color:var(--accent)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .portrait{aspect-ratio:4/5;justify-self:end;width:100%;max-width:400px;border-radius:var(--r);overflow:hidden;background:var(--chip);box-shadow:0 20px 50px -25px rgba(0,0,0,.35)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
@@ -705,6 +713,11 @@ const UI = {
   },
   resume: { en: "Download résumé", zh: "下载简历" },
   email: { en: "Email me", zh: "发邮件" },
+  mailGmail: { en: "Write in Gmail", zh: "用 Gmail 写信" },
+  mailOutlook: { en: "Write in Outlook", zh: "用 Outlook 写信" },
+  mailApp: { en: "Open mail app", zh: "用邮件 App 打开" },
+  mailCopy: { en: "Copy email address", zh: "复制邮箱地址" },
+  copied: { en: "Copied ✓", zh: "已复制 ✓" },
   view: { en: "View project →", zh: "查看项目 →" },
   addPhoto: { en: "Add photo:", zh: "放入图片：" },
   contact: {
@@ -739,6 +752,19 @@ function timelineItem(it) {
   </article>`;
 }
 
+/* email: mailto alone does nothing when no mail app is set up, so offer webmail + copy too */
+function mailMenu(addr) {
+  const to = encodeURIComponent(addr);
+  return `<details class="mail"><summary class="btn">✉ ${esc(t(UI.email))}</summary>
+    <div class="mail-menu">
+      <div class="mail-addr">${esc(addr)}</div>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${to}" target="_blank" rel="noopener">${esc(t(UI.mailGmail))}</a>
+      <a href="https://outlook.office.com/mail/deeplink/compose?to=${to}" target="_blank" rel="noopener">${esc(t(UI.mailOutlook))}</a>
+      <a href="mailto:${esc(addr)}">${esc(t(UI.mailApp))}</a>
+      <button type="button" data-copy="${esc(addr)}">${esc(t(UI.mailCopy))}</button>
+    </div></details>`;
+}
+
 function render() {
   document.documentElement.lang = lang;
   document.title = `${t(SITE.name)} · ${lang === "zh" ? "个人主页" : "Portfolio"}`;
@@ -752,7 +778,7 @@ function render() {
   const resume = lang === "zh" ? (L.resumeZh || L.resumeEn) : (L.resumeEn || L.resumeZh);
   const ctas = [
     resume && `<a class="btn primary" href="${esc(resume)}" target="_blank" rel="noopener">↓ ${esc(t(UI.resume))}</a>`,
-    L.email && `<a class="btn" href="mailto:${esc(L.email)}">✉ ${esc(t(UI.email))}</a>`,
+    L.email && mailMenu(L.email),
     L.linkedin && `<a class="btn" href="${esc(L.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`,
     L.github && `<a class="btn" href="${esc(L.github)}" target="_blank" rel="noopener">GitHub</a>`
   ].filter(Boolean).join("");
@@ -870,7 +896,16 @@ function setLang(l) {
     if (card && !e.target.closest("a")) { location.hash = card.dataset.href; return; }
     if (e.target.closest("#lb")) lb.classList.remove("open");
   });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { lb.classList.remove("open"); document.querySelectorAll("details.mail[open]").forEach(d => d.open = false); } });
+  document.addEventListener("click", async e => {
+    document.querySelectorAll("details.mail[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; });
+    const b = e.target.closest("[data-copy]");
+    if (!b) return;
+    try { await navigator.clipboard.writeText(b.dataset.copy); }
+    catch (err) { const s = getSelection(), rg = document.createRange(); rg.selectNodeContents(b.closest(".mail-menu").querySelector(".mail-addr")); s.removeAllRanges(); s.addRange(rg); document.execCommand("copy"); }
+    b.textContent = t(UI.copied);
+    setTimeout(() => { b.textContent = t(UI.mailCopy); }, 1600);
+  });
 
   render();
 })();
