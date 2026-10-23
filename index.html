@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kacey Gu · Portfolio</title>
+<meta name="description" content="Kacey (Fangting) Gu 顾芳汀 — Columbia SIPA MPA, founder of UnLearning Education. Strategy, finance and business development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3ecdf; --surface:#fbf7f0; --ink:#2b251e; --muted:#76695a; --line:#e2d6c3;
+  --accent:#a8522f; --accent-soft:#efdccb; --chip:#ebe2d2;
+  --serif:"Fraunces","Noto Serif SC",Georgia,serif;
+  --sans:"Inter","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --max:1080px; --r:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+html[lang="zh"] body{line-height:1.8}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .top{display:flex;align-items:center;gap:20px;height:58px}
+.brand{font:600 18px var(--serif);text-decoration:none;white-space:nowrap}
+.tools{display:flex;gap:8px;align-items:center;flex-shrink:0;margin-left:auto}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.lang button{border:0;background:none;color:var(--muted);font:500 13px var(--sans);padding:5px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 -8px;padding:0 0 10px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex-shrink:0;text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);padding:7px 14px;border-radius:999px;white-space:nowrap;transition:background .15s,color .15s}
+.tabs a:hover{color:var(--ink);background:var(--chip)}
+.tabs a[aria-current="page"]{background:var(--accent);color:#fff}
+
+/* pages */
+.page{display:none;animation:fade .25s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.pager a{text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.pager a:hover{color:var(--accent);border-color:var(--accent)}
+.pager .next{margin-left:auto}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font:600 clamp(38px,6vw,60px)/1.08 var(--serif);margin:10px 0 18px;letter-spacing:-.01em}
+.tagline{font-size:19px;color:var(--muted);max-width:34em;margin:0 0 26px}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);text-decoration:none;font-weight:500;font-size:14px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.portrait{aspect-ratio:4/5;justify-self:end;width:100%;max-width:400px;border-radius:var(--r);overflow:hidden;background:var(--chip);box-shadow:0 20px 50px -25px rgba(0,0,0,.35)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.stat b{display:block;font:600 26px/1.1 var(--serif);color:var(--accent)}
+.stat span{font-size:13px;color:var(--muted);line-height:1.35;display:block;margin-top:4px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:14px;color:var(--muted)}
+
+/* sections */
+section.block{padding:48px 0 64px}
+.home-about{padding:8px 0 64px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:30px}
+.sec-head .num{font:500 14px var(--serif);color:var(--accent)}
+h2{font:600 clamp(26px,3.6vw,34px)/1.2 var(--serif);margin:0}
+.sub{font:600 24px/1.3 var(--serif);margin:56px 0 22px;padding-top:36px;border-top:1px solid var(--line)}
+.about p{font-size:18px;max-width:46em;margin:0 0 14px}
+
+/* timeline */
+.timeline{display:grid;gap:18px}
+.item{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.item .when{font-size:14px;color:var(--muted)}
+.item .where{font-size:14px;color:var(--muted);margin-top:2px}
+.item h3{font:600 20px/1.3 var(--serif);margin:0 0 2px}
+.item .role{color:var(--accent);font-weight:500;font-size:15px;margin-bottom:10px}
+.item ul{margin:8px 0 0;padding-left:18px}
+.item li{margin:4px 0}
+.item .pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+.item .pics .ph{aspect-ratio:4/3;border-radius:10px;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--chip);color:var(--muted)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 40px -24px rgba(0,0,0,.35)}
+.card .ph{aspect-ratio:16/10}
+.card .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.card .meta{font-size:13px;color:var(--muted)}
+.card h3{font:600 20px/1.3 var(--serif);margin:4px 0 8px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.card ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.card .more{margin-top:auto;padding-top:14px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+
+/* clickable timeline item + detail page */
+.item.linked{cursor:pointer;transition:border-color .15s,box-shadow .2s}
+.item.linked:hover{border-color:var(--accent);box-shadow:0 14px 34px -24px rgba(0,0,0,.35)}
+.go{display:inline-flex;margin-top:14px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent)}
+.intro{font-size:17px;color:var(--muted);max-width:46em;margin:-12px 0 30px}
+.events{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.event{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.event > .ph{aspect-ratio:16/10}
+.event .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px 6px 0}
+.event .thumbs .ph{aspect-ratio:4/3;border-radius:6px;min-height:0}
+.event .thumbs .ph.missing span{font-size:10px;padding:4px}
+.event .body{padding:18px 22px 22px}
+.event .kind{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--accent);background:var(--accent-soft);padding:2px 10px;border-radius:999px}
+.event .date{font-size:13px;color:var(--muted);margin-top:10px}
+.event h3{font:600 20px/1.3 var(--serif);margin:4px 0 8px}
+.event p{margin:0;color:var(--muted);font-size:15px}
+
+/* story page */
+.story-lead{font:600 clamp(22px,3vw,28px)/1.35 var(--serif);margin:-6px 0 6px;color:var(--accent)}
+.chapters{display:grid;gap:22px}
+.chapter{display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.chapter:nth-child(even) .pic{order:2}
+.chapter .pic .ph{height:100%;min-height:260px}
+.chapter .pic figcaption{display:none}
+.chapter .txt{padding:28px 30px;display:flex;flex-direction:column;justify-content:center}
+.chapter .n{font:600 34px/1 var(--serif);color:var(--accent);opacity:.55}
+.chapter h3{font:600 22px/1.3 var(--serif);margin:10px 0 10px}
+.chapter p{margin:0;color:var(--ink)}
+.chapter .cap{margin-top:14px;font-size:13px;color:var(--muted);font-style:italic}
+.beliefs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.belief{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.belief .ic{font-size:26px}
+.belief h4{font:600 19px var(--serif);margin:10px 0 8px}
+.belief p{margin:0;color:var(--muted);font-size:15px}
+.gift{margin:0 0 24px;padding:22px 26px;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--r) var(--r) 0;font:500 18px/1.7 var(--serif)}
+.funfacts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.fact .ph{aspect-ratio:4/3}
+.fact .body{padding:18px 22px 22px}
+.fact h4{font:600 18px var(--serif);margin:0 0 8px}
+.fact p{margin:0;color:var(--muted);font-size:15px}
+.fact.noimg{display:flex;align-items:center;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fact.noimg h4{font-size:24px;line-height:1.3}
+.fact.noimg p{color:color-mix(in srgb,var(--bg) 78%,transparent)}
+.story-foot{text-align:center;color:var(--muted);margin:28px 0 0;font-size:15px;letter-spacing:.02em}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.skill h3{font:600 17px var(--serif);margin:0 0 12px}
+.skill .tags{margin:0}
+.skill .tag{font-size:13px;background:var(--accent-soft);color:var(--ink)}
+
+/* gallery */
+.gallery{columns:3 240px;column-gap:14px}
+.gallery figure{margin:0 0 14px;break-inside:avoid;border-radius:12px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.gallery figcaption{font-size:13px;color:var(--muted);padding:8px 12px}
+
+/* image + placeholder */
+.ph{position:relative;background:var(--chip);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.gallery .ph img{height:auto}
+.ph.missing{display:flex;align-items:center;justify-content:center;min-height:140px;background:repeating-linear-gradient(45deg,var(--chip),var(--chip) 10px,var(--bg) 10px,var(--bg) 20px)}
+.ph.missing span{font:12px/1.4 ui-monospace,Menlo,monospace;color:var(--muted);text-align:center;padding:10px;background:var(--surface);border-radius:8px;border:1px dashed var(--line)}
+
+/* contact */
+.contact{text-align:center;padding:80px 0}
+.contact p{color:var(--muted);font-size:18px;margin:10px auto 24px;max-width:32em}
+.contact .cta{justify-content:center}
+footer{padding:28px 0 40px;text-align:center;font-size:13px;color:var(--muted)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:50;padding:24px;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-height:90vh;max-width:100%;border-radius:8px}
+.zoomable img{cursor:zoom-in}
+
+@media (max-width:860px){
+  .hero{padding:40px 0}
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .portrait{max-width:300px;order:-1;justify-self:start}
+  .item{grid-template-columns:1fr;gap:6px;padding:20px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .chapter{grid-template-columns:1fr}
+  .chapter:nth-child(even) .pic{order:0}
+  .chapter .pic .ph{aspect-ratio:16/10;min-height:0}
+  .beliefs,.funfacts{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .wrap{padding:0 16px}
+  .cards{grid-template-columns:1fr}
+}
+@media print{
+  header.nav,.lb,.pager{display:none}
+  .page{display:block!important}
+  section.block{break-inside:avoid-page;padding:28px 0}
+  .card:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#home" data-k="name"></a>
+      <div class="tools">
+        <div class="lang" role="group" aria-label="Language">
+          <button data-lang="en" aria-pressed="true">EN</button>
+          <button data-lang="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+    </div>
+    <nav class="tabs" id="navlinks" aria-label="Sections"></nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="page" data-page="home">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow" data-k="hero.eyebrow"></div>
+        <h1 data-k="name"></h1>
+        <p class="tagline" data-k="hero.tagline"></p>
+        <div class="cta" id="heroCta"></div>
+        <div class="facts" id="facts"></div>
+        <div class="stats" id="stats"></div>
+      </div>
+      <div class="portrait ph" data-img="images/portrait.webp"></div>
+    </div>
+  </section>
+
+  <section class="home-about" id="about"><div class="wrap">
+    <div class="sec-head"><h2 data-k="nav.about"></h2></div>
+    <div class="about" id="aboutBody"></div>
+  </div></section>
+  </div>
+
+  <section class="block page" data-page="story" id="story"><div class="wrap">
+    <div class="sec-head"><h2 data-k="nav.story"></h2></div>
+    <p class="story-lead" data-k="story.lead"></p>
+    <p class="intro" data-k="story.sub"></p>
+    <div class="chapters" id="chapters"></div>
+
+    <h3 class="sub" data-k="story.beliefsTitle"></h3>
+    <p class="intro" data-k="story.beliefsLead"></p>
+    <div class="beliefs" id="beliefs"></div>
+
+    <h3 class="sub" data-k="story.funTitle"></h3>
+    <blockquote class="gift" data-k="story.gift"></blockquote>
+    <div class="funfacts" id="funfacts"></div>
+    <p class="story-foot" data-k="story.footer"></p>
+  </div></section>
+
+  <section class="block page" data-page="education" id="education"><div class="wrap">
+    <div class="sec-head"><span class="num">01</span><h2 data-k="nav.education"></h2></div>
+    <div class="timeline" id="eduList"></div>
+  </div></section>
+
+  <section class="block page" data-page="experience" id="experience"><div class="wrap">
+    <div class="sec-head"><span class="num">02</span><h2 data-k="nav.experience"></h2></div>
+    <div class="timeline" id="expList"></div>
+  </div></section>
+
+  <section class="block page" data-page="projects" id="projects"><div class="wrap">
+    <div class="sec-head"><span class="num">03</span><h2 data-k="nav.projects"></h2></div>
+    <div class="cards" id="projList"></div>
+    <h3 class="sub" data-k="nav.leadership"></h3>
+    <div class="timeline" id="leadList"></div>
+  </div></section>
+
+  <section class="block page" data-page="gci" data-parent="projects" id="gci"><div class="wrap">
+    <a class="back" href="#projects" data-k="back"></a>
+    <div class="sec-head"><h2 data-k="gci.title"></h2></div>
+    <p class="intro" data-k="gci.intro"></p>
+    <div class="events" id="gciEvents"></div>
+  </div></section>
+
+  <section class="block page" data-page="skills" id="skills"><div class="wrap">
+    <div class="sec-head"><span class="num">04</span><h2 data-k="nav.skills"></h2></div>
+    <div class="skills" id="skillList"></div>
+  </div></section>
+
+  <section class="block page" data-page="gallery" id="gallery"><div class="wrap">
+    <div class="sec-head"><span class="num">05</span><h2 data-k="nav.gallery"></h2></div>
+    <div class="gallery" id="galleryList"></div>
+  </div></section>
+
+  <section class="block contact page" data-page="contact" id="contact"><div class="wrap">
+    <h2 data-k="contact.title"></h2>
+    <p data-k="contact.text"></p>
+    <div class="cta" id="contactCta"></div>
+  </div></section>
+</main>
+
+<footer><div class="wrap" id="footer"></div></footer>
+<div class="lb" id="lb"><img alt=""></div>
+
+<script>
+/* ============================================================
+   ✏️  编辑这里就够了 / EDIT CONTENT HERE
+   每个文字字段都是 { en: "...", zh: "..." }。
+   图片放进 images/ 文件夹，文件名和下面的路径一致即可。
+   缺图时页面会显示一个占位框，提示应该放哪个文件。
+   ============================================================ */
+const SITE = {
+  name: { en: "Kacey (Fangting) Gu", zh: "顾芳汀 Kacey" },
+  hero: {
+    eyebrow: { en: "Builder · Integrator · Communicator", zh: "建设者 · 整合者 · 沟通者" },
+    tagline: {
+      en: "I turn ambiguous, cross-functional initiatives into decision-ready strategy — combining finance and data with the operator instincts I built founding an education company and leading a 40-person student organization. Seeking roles in strategy, finance, and business development & innovation.",
+      zh: "我擅长把复杂、跨部门的项目转化为可落地的决策方案——把金融与数据分析，和我在创办教育公司、带领 40 人学生组织中积累的实操经验结合起来。目前寻找战略、金融、商务拓展与创新方向的工作机会。"
+    }
+  },
+  facts: [
+    { en: "📍 New York, NY · from Suzhou, China", zh: "📍 美国纽约 · 来自苏州" },
+    { en: "🎓 Columbia SIPA · MPA ’27", zh: "🎓 哥伦比亚大学 SIPA · 2027 届" },
+    { en: "🗣 English · 中文 · Français", zh: "🗣 英语 · 中文 · 法语" }
+  ],
+  stats: [
+    { num: "600+", label: { en: "students served by UnLearning", zh: "UnLearning 服务学生" } },
+    { num: "500+", label: { en: "China Forum attendees", zh: "中国论坛参会者" } },
+    { num: "$50K+", label: { en: "forum sponsorship secured", zh: "论坛赞助" } },
+    { num: "35+", label: { en: "countries traveled", zh: "到访国家" } }
+  ],
+  links: {
+    email: "fg2631@columbia.edu",
+    linkedin: "",               // TODO: 填入你的 LinkedIn 链接
+    github: "",
+    resumeEn: "resume-en.pdf",
+    resumeZh: ""                // 有中文简历时放 resume-zh.pdf 并填在这里
+  },
+
+  about: [
+    {
+      en: "From UWC to Emory to Columbia, I've spent my life moving between cultures, and that shapes how I work: I like sitting at the intersection of people, money, and ideas — figuring out which opportunities deserve backing, then actually making them happen.",
+      zh: "从 UWC 到埃默里再到哥大，我一直在不同文化之间穿行，这也塑造了我的工作方式：我喜欢站在人、资本与想法的交汇处——判断哪些机会值得投入，然后亲手把它们做成。"
+    },
+    {
+      en: "As an undergraduate, I co-founded UnLearning Education in Shanghai and scaled it from 4 founders to a 20-person team serving 600+ students across 7 cities. Today I'm pursuing an MPA in International Finance and Economic Policy at Columbia SIPA, where I lead the Greater China Initiative and run the Harvard-Columbia China Forum and the annual China Trek.",
+      zh: "大学期间，我在上海联合创办了 UnLearning 求知计划，从 4 位创始人发展到 20 人团队，服务 7 个城市 / 地区的 600 多名学生。现在我在哥伦比亚大学国际与公共事务学院（SIPA）攻读公共管理硕士（国际金融与经济政策方向），担任哥大国际事务中国学社（Greater China Initiative）主席，主导哈佛-哥大中国论坛和年度中国行。"
+    },
+    {
+      en: "Across internships in investor relations, strategy & finance, operations risk, and nonprofit management, I've learned to pair rigorous analysis — SEC filings, KPI frameworks, risk models — with clear communication for boards and executives, and to use AI tools to move faster without lowering the bar.",
+      zh: "在投资者关系、战略与财务、运营风险和非营利管理等实习中，我学会了把严谨的分析（SEC 文件、KPI 框架、风险模型）与面向董事会和高管的清晰表达结合起来，并善用 AI 工具在不降低标准的前提下提升效率。"
+    }
+  ],
+
+  /* 「简历之外」页：来自个人介绍 PPT */
+  story: {
+    lead: { en: "How a kid from Suzhou found the world", zh: "苏州小孩是怎么走向世界的" },
+    sub: { en: "From one question to a conviction that never changed.", zh: "从一个问题，到一直没变的信念。" },
+    chapters: [
+      {
+        title: { en: "UWC — where the world opened up", zh: "UWC — 世界在这里打开" },
+        text: {
+          en: "Living with peers from 90+ countries, I walked into refugee camps while still in high school. I started asking a question most people never ask before seventeen: what stance should a person take toward the world? Making money was never the answer.",
+          zh: "与来自 90 多个国家的同龄人共同生活，高中时便走进难民营。我开始思考那些大多数人从未在 17 岁前追问的问题：人到底应该以什么姿态面对世界？赚钱，从来不是那个答案。"
+        },
+        image: "images/uwc-1.jpg",
+        caption: { en: "International Peace Day with classmates", zh: "和同学们过国际和平日" }
+      },
+      {
+        title: { en: "Emory — the underlying logic of the world", zh: "Emory — 理解世界的底层逻辑" },
+        text: {
+          en: "Art history and philosophy weren't an escape from reality — they were how I learned to understand it: how meaning is built, how history shapes behavior, how circumstance shapes a person, and how surprisingly everything is connected.",
+          zh: "艺术史与哲学不是我逃离现实的方式，而是理解它的途径。我学会如何建构意义，历史如何塑造行为，处境如何塑造一个人的底色，世界万物是怎样令人惊喜地连接在一起。"
+        },
+        image: "images/emory-thesis.jpg",
+        caption: { en: "Defending my thesis on Chinese philosophy × art history", zh: "中国哲学 × 艺术史论文答辩" }
+      },
+      {
+        title: { en: "UnLearning — the mission never stopped", zh: "求知计划 — 使命从未停止" },
+        text: {
+          en: "Through the pandemic, a mudslide, Dali and Guizhou — we're still here. 600+ students, 5 years. Not because the wind was at our backs, but because we kept doing what we believed was right and worth doing.",
+          zh: "经历疫情、泥石流、大理、贵州——我们还在。600+ 学生、5 年。不是因为顺风，而是迎风而上，坚持做自己认为正确的、有价值的事。"
+        },
+        image: "images/unlearning-camp.jpg",
+        caption: { en: "Every college summer: no internship — just building an idealist's haven for young people in the mountains", zh: "大学开始的每年暑假，没有实习，只有在山里，给中国青年建造一块理想主义桃花源" }
+      },
+      {
+        title: { en: "Columbia — from ideals to institutions", zh: "哥伦比亚 — 从理念到制度" },
+        text: {
+          en: "A humanities student turned finance student; an artsy kid who became President of Columbia's Greater China Initiative, bringing in resources and landing programs. I never look for answers inside my comfort zone — I look for the fulcrum where effort can move something bigger.",
+          zh: "文科生转金融，文艺青年当上了哥大国际事务中国学社主席，带着组织拓展资源、落地项目。我从不在舒适圈里寻找答案。我寻找的，是一个让我的努力可以撬动更大改变的支点。"
+        },
+        image: "images/gci-columbia.jpg",
+        caption: { en: "Leading the society as a bridge for Chinese students", zh: "带领社团，做中国学生的代表和桥梁" }
+      }
+    ],
+    beliefsTitle: { en: "What I believe", zh: "我相信的事" },
+    beliefsLead: { en: "Business is the most powerful language of our time — and young innovators from China are the ones moving it forward.", zh: "商业是这个时代最有力量的语言。来自中国的年轻创新者，正是推动它向前的人。" },
+    beliefs: [
+      { icon: "⚡", title: { en: "The power of business", zh: "商业的力量" },
+        text: { en: "Following global affairs every day has made it clear to me: traditional industries can't keep up with how fast the world is changing. What moves the world forward is capital combined with innovation.", zh: "每天追踪国际局势让我越来越清楚：传统行业已跟不上这个世界的变化速度。真正能带领世界往前走的，是资本与创新的结合。" } },
+      { icon: "🌏", title: { en: "China's moment", zh: "中国创新的时机" },
+        text: { en: "Much of the next wave of global influence will come from Chinese founders. I've lived and built a company there, and studied the culture young Chinese people carry. I want to be someone who backs them.", zh: "下一波全球影响力，绝大部分将来自中国的创业者。我在这片土地上生活过、创业过，也认真研究过中国青年骨子里的文化。我想成为支持他们的那个人。" } },
+      { icon: "🛠", title: { en: "A founder's lens", zh: "创业者的视角" },
+        text: { en: "I've built systems under pressure that are still in use — from an education program that kept going through a mudslide to a case-management platform for 100+ refugees. I know what real execution feels like.", zh: "我在压力中搭建过至今沿用的系统——从泥石流里坚持的教育项目，到帮助 100+ 难民的案例管理平台。我知道「真正执行」是什么感觉。" } }
+    ],
+    funTitle: { en: "Fun facts", zh: "关于我这个人" },
+    gift: {
+      en: "My greatest gift: observing people, optimizing processes, internalizing results. I have an instinct for sensing what goes unsaid in a room — and turning it into a reason to act.",
+      zh: "我最大的天赋：观察人类，优化过程，内化结果。我有一种天然的本能：在人群中感知那些没被说出来的东西，然后把它变成行动的依据。"
+    },
+    facts: [
+      { image: "images/europe.jpg",
+        title: { en: "Three months alone in Europe", zh: "独自流浪欧洲，三个月" },
+        text: { en: "The summer everyone else was interning, I backpacked across Europe alone — no itinerary, no companions. The best self-knowledge comes from putting yourself somewhere unfamiliar. The three months that changed me most.", zh: "当别人都在实习的那个暑假，我一个人背包走遍欧洲。没有行程表，没有同伴，只有一个想法：最好的自我认知，来自把自己放进陌生的世界里。那是我人生中改变最大的三个月。" } },
+      { image: "images/surfing.jpg",
+        title: { en: "How I unwind: surfing", zh: "解压方式：冲浪" },
+        text: { en: "Surfing taught me one thing: you can't control the waves, you can only learn to read them. That's how I face uncertainty — don't fight it; sense, observe, then use its force.", zh: "冲浪教会我一件事：你控制不了海浪，你只能学会读它。这大概也是我面对不确定性的方式——不对抗，先感知，观察，再借力。" } },
+      { image: "",
+        title: { en: "ENFJ — but not the kind you think", zh: "ENFJ — 但不是你以为的那种" },
+        text: { en: "I read people with empathy and take the world apart with logic. A natural connector, and a thinker through and through.", zh: "我用情感读懂人，用逻辑拆解世界。天生的联结者，也是不折不扣的思考者。" } }
+    ],
+    footer: { en: "35+ countries · Piano · Photography · Hand-drip coffee · Songwriting · Reading", zh: "走过 35+ 个国家 · 钢琴 · 摄影 · 手冲咖啡 · 写歌 · 阅读" }
+  },
+
+  education: [
+    {
+      when: { en: "Aug 2025 – May 2027 (expected)", zh: "2025.08 – 2027.05（预计）" },
+      where: { en: "New York, NY", zh: "美国纽约" },
+      title: { en: "Columbia University, School of International and Public Affairs (SIPA)", zh: "哥伦比亚大学 国际与公共事务学院（SIPA）" },
+      role: { en: "Master of Public Administration — International Finance and Economic Policy", zh: "公共管理硕士 — 国际金融与经济政策方向" },
+      bullets: [
+        { en: "Coursework: International Capital Markets, Corporate Finance, Impact Investing, Infrastructure Investment, International Strategy, Quantitative Analysis, Micro/Macroeconomic Analysis, International Political Economy, International Finance & Monetary Theory", zh: "相关课程：国际资本市场、公司金融、影响力投资、基础设施投资、国际战略、定量分析、微观 / 宏观经济分析、国际政治经济学、国际金融与货币理论" },
+        { en: "SIPA Consulting Club (Board) · CI3 Impact Investing Club (Key Member) · Greater China Initiative (President)", zh: "SIPA 咨询俱乐部（理事会成员）· CI3 影响力投资俱乐部（核心成员）· 哥大国际事务中国学社（主席）" }
+      ],
+      tags: ["Finance", "Economic Policy", "Impact Investing"],
+      images: []
+    },
+    {
+      when: { en: "Aug 2020 – May 2024", zh: "2020.08 – 2024.05" },
+      where: { en: "Atlanta, GA", zh: "美国亚特兰大" },
+      title: { en: "Emory University, College of Arts and Sciences", zh: "埃默里大学 文理学院" },
+      role: { en: "B.A. in Art History & Philosophy · Cum Laude · GPA 3.9/4.0", zh: "艺术史与哲学 文学学士 · 优等荣誉（Cum Laude）· GPA 3.9/4.0" },
+      bullets: [
+        { en: "Dean's List · Phi Sigma Tau Philosophy Honor Society", zh: "院长嘉许名单 · Phi Sigma Tau 哲学荣誉学会" },
+        { en: "Student Government Association (Election Board) · University Center Board (Chair)", zh: "学生会（选举委员会）· 大学中心委员会（主席）" }
+      ],
+      tags: ["Art History", "Philosophy"],
+      images: ["images/emory-thesis.jpg", "images/grad.jpg"]
+    },
+    {
+      when: { en: "Feb 2018 – May 2020", zh: "2018.02 – 2020.05" },
+      where: { en: "Changshu, China", zh: "江苏常熟" },
+      title: { en: "UWC Changshu China", zh: "常熟世界联合学院（UWC Changshu China）" },
+      role: { en: "IB Diploma Programme", zh: "IB 国际文凭课程" },
+      bullets: [
+        { en: "Lived and studied with peers from 90+ countries.", zh: "与来自 90 多个国家的同龄人共同生活和学习。" },
+        { en: "Visited refugee camps in high school — the start of asking how one should stand in the world.", zh: "高中时便走进难民营，开始追问：人到底应该以什么姿态面对世界。" },
+        { en: "Leader, Share Arts With All (SAWA)", zh: "Share Arts With All（SAWA）负责人" },
+        { en: "Leader, TEDxChangshuChina", zh: "TEDxChangshuChina 负责人" },
+        { en: "Leader, Mini UWC Summer Program", zh: "Mini UWC 夏令营负责人" }
+      ],
+      tags: ["UWC", "IB", "TEDx", "Arts"],
+      images: ["images/uwc-1.jpg"]
+    }
+  ],
+
+  experience: [
+    {
+      when: { en: "Aug 2026 – Sep 2026", zh: "2026.08 – 2026.09" },
+      where: { en: "New York, NY", zh: "美国纽约" },
+      title: { en: "Chaince Digital Holdings (Nasdaq: CD)", zh: "Chaince Digital Holdings（纳斯达克：CD）" },
+      role: { en: "Investor Relations Intern", zh: "投资者关系实习生" },
+      bullets: [
+        { en: "Built due-diligence analysis on a public GPU/neocloud lending company from primary SEC filings (10-Q, 10-K/A, 10-K), verifying governance, counterparty exposure and financing terms, and correcting errors in secondary-source research.", zh: "基于 SEC 一手文件（10-Q、10-K/A、10-K）完成对一家上市 GPU / 新型云算力借贷公司的尽职调查，核实治理结构、交易对手敞口与融资条款，并纠正了二手资料中的错误。" },
+        { en: "Contributed research and slides to a $4M institutional fundraise deck ($40M valuation) for an RWA tokenization / DeFi platform; produced SPAC-line materials with AI-assisted tooling to brand and compliance standards.", zh: "为一家 RWA 代币化 / DeFi 基础设施平台的 400 万美元机构融资路演材料（估值 4000 万美元）撰写研究内容与幻灯片；借助 AI 工具制作 SPAC 业务线文件，符合品牌与合规标准。" },
+        { en: "Re-architected the prompt logic of the firm's AI-powered Market Intelligence platform, turning due-diligence workflows into scalable LLM systems for company screening and deal sourcing.", zh: "重构公司 AI 市场情报平台的提示词逻辑，把投资尽调流程转化为可扩展的大模型系统，用于公司筛选与项目搜寻。" }
+      ],
+      tags: ["Due Diligence", "SEC Filings", "AI / LLM", "Fundraising"],
+      images: []
+    },
+    {
+      when: { en: "Jul 2026 – Aug 2026", zh: "2026.07 – 2026.08" },
+      where: { en: "New York, NY", zh: "美国纽约" },
+      title: { en: "Vital Strategies", zh: "Vital Strategies（全球公共卫生机构）" },
+      role: { en: "Summer Associate — Operations, Global Enterprise Integration", zh: "运营暑期助理 — 全球企业整合部" },
+      bullets: [
+        { en: "Assessed country-level operational risk for Kenya, Rwanda, Vietnam and Indonesia, synthesizing 4+ intelligence platforms (ISOS, Sibylline, Factual, OSAC) and government/multilateral sources into decision-ready reports.", zh: "为肯尼亚、卢旺达、越南、印尼开展国家级运营风险评估，整合 ISOS、Sibylline、Factual、OSAC 等 4 个以上情报平台及政府 / 多边机构信息，形成可直接用于决策的报告。" },
+        { en: "Built a standardized reporting template for a growing multi-country assessment series, using AI-assisted synthesis with primary-source verification.", zh: "为持续扩展的多国评估系列搭建标准化报告模板，采用 AI 辅助整合并以一手资料核验。" },
+        { en: "Maintained a four-tier travel-risk framework, routing recommendations through SVP/CEO approval and coordinating with finance, legal/compliance and country teams.", zh: "维护四级出行风险分级体系，推动建议经 SVP / CEO 审批，并与财务、法务合规及国家项目团队协作落地。" }
+      ],
+      tags: ["Risk Analysis", "Operations", "Cross-functional"],
+      images: []
+    },
+    {
+      when: { en: "Feb 2026 – Jun 2026", zh: "2026.02 – 2026.06" },
+      where: { en: "New York, NY", zh: "美国纽约" },
+      title: { en: "New York Philharmonic", zh: "纽约爱乐乐团" },
+      role: { en: "Strategy & Finance Consultant Intern", zh: "战略与财务咨询实习生" },
+      bullets: [
+        { en: "Benchmarked 5 Tier-1 orchestras and built a 4-pillar KPI framework that turned social media into a data-driven investment lens for executive decision-making.", zh: "对标 5 家一线乐团，搭建四支柱 KPI 体系，把社交媒体转化为数据驱动的投资决策视角，支持高管决策。" },
+        { en: "Designed a Board-ready ROI dashboard with 8 performance and efficiency metrics plus peer benchmarks for the Finance Committee.", zh: "为财务委员会设计董事会级 ROI 仪表盘，整合 8 项绩效与效率指标及同业对标。" },
+        { en: "Delivered recommendations on Entertainment & Travel spending for FY26/FY27 planning by modeling revenue drivers, cost structures and sustainability scenarios.", zh: "在 FY26 / FY27 预算规划中，通过分析收入驱动、成本结构与可持续情景，就招待与差旅支出提出财务与运营建议。" }
+      ],
+      tags: ["KPI Framework", "Dashboard", "Budget Planning"],
+      images: []
+    },
+    {
+      when: { en: "Feb 2025 – May 2025", zh: "2025.02 – 2025.05" },
+      where: { en: "New York, NY", zh: "美国纽约" },
+      title: { en: "International Rescue Committee", zh: "国际救援委员会（IRC）" },
+      role: { en: "Management Intern", zh: "管理实习生" },
+      bullets: [
+        { en: "Designed an Excel case-management and performance-tracking model for 100+ refugee and immigrant clients; led progress reviews for ~30 active clients and generated employer-matching recommendations with a ~40% placement rate.", zh: "为 100 多名难民和移民客户设计 Excel 个案管理与绩效追踪模型；主导约 30 名在案客户的进度评估，提出雇主匹配建议，就业安置率约 40%。" }
+      ],
+      tags: ["Excel Modeling", "Nonprofit"],
+      images: []
+    }
+  ],
+
+  projects: [
+    {
+      image: "images/unlearning-logo.jpg",
+      meta: { en: "Founder / CEO · Shanghai · 2021 – Present", zh: "创始人 / CEO · 上海 · 2021 – 至今" },
+      title: { en: "UnLearning Education", zh: "UnLearning 求知计划" },
+      desc: { en: "A humanistic education venture running summer camps and bi-weekly workshops for students across Greater China.", zh: "一家人文教育创业项目，面向大中华区学生开展夏令营和双周人文工作坊。" },
+      bullets: [
+        { en: "Scaled from 4 founders to 20 members; built department systems and equity structure from scratch.", zh: "从 4 位创始人扩展到 20 人团队，从零搭建部门体系与股权结构。" },
+        { en: "600+ students across 7 cities/regions at ~30% gross margin; 7 themed camps, incl. a real-life “Truman's World” in rural Guizhou.", zh: "服务 7 个城市 / 地区 600+ 名学生，毛利率约 30%；策划 7 期主题夏令营，包括在贵州乡村打造的真人版“楚门的世界”。" },
+        { en: "Partnered with UWC and 20+ education associations; secured US$20K non-dilutive funding (Middlebury Project for Peace, Davis Scholars Program); spoke at UN 2024 Summit of the Future and TEDx.", zh: "与 UWC 及 20 多家教育机构合作；获得 2 万美元非稀释性资助（Middlebury Project for Peace、Davis Scholars Program）；受邀在 2024 联合国未来峰会及 TEDx 等平台发言。" }
+      ],
+      tags: ["Entrepreneurship", "Education", "Partnerships"],
+      link: ""
+    },
+    {
+      image: "",
+      meta: { en: "Founder · China · [year]", zh: "创始人 · 中国 ·【年份】" },
+      title: { en: "Alliance", zh: "Alliance" },
+      desc: { en: "China's first offline university community launched during the pandemic.", zh: "国内第一个疫情期间的线下大学社区。" },
+      bullets: [
+        { en: "[TODO: what members did together, how many students / cities, what it led to]", zh: "【待补充：社区做了什么、多少学生 / 城市、带来了什么】" }
+      ],
+      tags: ["Founder", "Community Building"],
+      link: ""
+    },
+    {
+      image: "images/fin-citi.jpg",
+      meta: { en: "Columbia SIPA · Financial Services in the 21st Century · Oct 2025 · Team of 6", zh: "哥大 SIPA ·「21 世纪金融服务」课程 · 2025.10 · 6 人小组" },
+      title: { en: "Repositioning Citigroup: Less is More", zh: "花旗集团战略重塑：少即是多" },
+      desc: { en: "A strategy case for how Citi can close its ROE gap by shrinking to what it does best.", zh: "分析花旗如何通过“做减法”、聚焦优势业务来缩小与同业的 ROE 差距。" },
+      bullets: [
+        { en: "Diagnosed the gap across profitability, revenue mix, assets, opex and market share — RoTCE 8.7% vs. JPM 21% and BofA 13.4%.", zh: "从盈利能力、收入结构、资产、运营成本、市场份额五个维度诊断差距：RoTCE 8.7%，对比摩根大通 21%、美银 13.4%。" },
+        { en: "Recommended exiting U.S. Personal Banking and redeploying capital into the high-ROE Services / TTS franchise (33% vs. 6.8% margin).", zh: "建议退出美国个人银行业务，把资本重新配置到高 ROE 的服务板块 / 资金与贸易方案（TTS），利润率 33% 对比 6.8%。" },
+        { en: "Built a regional plan (U.S., LATAM, EMEA, APAC tokenization) estimated to lift Group ROE by up to 2 pts.", zh: "制定分区域方案（美国、拉美、欧非中东、亚太代币化），预计可将集团 ROE 提升最多 2 个百分点。" }
+      ],
+      tags: ["Bank Strategy", "ROE Analysis", "Peer Benchmarking", "Tokenization"],
+      link: ""
+    },
+    {
+      image: "images/fin-private-credit.jpg",
+      meta: { en: "Columbia SIPA · Financial Services in the 21st Century · Dec 2025 · Team of 6", zh: "哥大 SIPA ·「21 世纪金融服务」课程 · 2025.12 · 6 人小组" },
+      title: { en: "The Next Financial Crisis: Private Credit", zh: "下一场金融危机：私募信贷" },
+      desc: { en: "Stress-testing the $2T private credit market against the anatomy of 2008 — and what to do before it breaks.", zh: "用 2008 年金融危机的演变逻辑，压力测试 2 万亿美元规模的私募信贷市场，并提出应对方案。" },
+      bullets: [
+        { en: "Mapped red flags — cov-lite structures, PIK, NAV-based marks, ~$80B in bank credit lines to funds, semi-liquid vehicles with run risk.", zh: "梳理风险信号：弱约束条款、PIK、基于模型的净值估值、银行对基金约 800 亿美元的信贷额度，以及存在挤兑风险的半流动性产品。" },
+        { en: "My section: long-term impact — geopolitics, ageing populations pushing pensions into illiquid credit, Gen-Z savings in semi-liquid funds, and uneven regional and intergenerational effects.", zh: "我负责长期影响部分：地缘政治、人口老龄化推动养老金涌入低流动性信贷、Z 世代储蓄进入半流动性基金，以及不均衡的区域与代际影响。" },
+        { en: "Proposed mitigation across portfolio firms, PE sponsors, lenders and regulators (mark-to-market, SIFI designation, FSB coordination).", zh: "从被投企业、PE 机构、贷款方到监管层提出分层应对方案（按市值计价、系统重要性认定、FSB 跨境协调）。" }
+      ],
+      tags: ["Private Credit", "Systemic Risk", "Macro"],
+      link: ""
+    }
+  ],
+
+  leadership: [
+    {
+      when: { en: "Dec 2025 – Dec 2026", zh: "2025.12 – 2026.12" },
+      where: { en: "Columbia SIPA, New York", zh: "哥大 SIPA · 纽约" },
+      title: { en: "Greater China Initiative (GCI)", zh: "哥大国际事务中国学社（GCI）" },
+      detail: "gci",   // 点击进入下面 SITE.gci 的活动页
+      role: { en: "President", zh: "主席" },
+      bullets: [
+        { en: "Lead a 40-person organization across 4 teams — Alumni Relations, Business Development, Events, Marketing/PR — running three partner-facing programs at once.", zh: "带领 40 人组织，下设校友关系、商务拓展、活动、市场公关 4 个团队，同时运营三个对外合作项目。" },
+        { en: "Host bi-weekly fireside chats with senior guests such as Fred Teng, David Firestein and James Chau.", zh: "主持双周炉边对话，邀请方大为（David Firestein）、滕绍骏（Fred Teng）、James Chau 等资深嘉宾。" }
+      ],
+      tags: ["Leadership", "Team Management"],
+      images: ["images/gci-columbia.jpg"]
+    },
+    {
+      when: { en: "2026", zh: "2026" },
+      where: { en: "Columbia University, New York", zh: "哥伦比亚大学 · 纽约" },
+      title: { en: "Harvard-Columbia China Forum", zh: "哈佛-哥大中国论坛" },
+      role: { en: "Led as GCI President", zh: "以 GCI 主席身份主导" },
+      bullets: [
+        { en: "Reached out to 200+ prospective speakers and secured 70+ — including Graham Allison, Jeffrey Sachs, Kai-Fu Lee and David Firestein — across arts, policy, business, AI and entertainment.", zh: "联络 200 多位潜在嘉宾，最终邀请到 70 多位，涵盖艺术、政策、商业、AI 与娱乐领域，包括 Graham Allison、Jeffrey Sachs、李开复、David Firestein 等。" },
+        { en: "Led a 20-person team to deliver the forum for 500+ attendees and 100+ invited guests.", zh: "带领 20 人团队，举办了 500 多名参会者、100 多位特邀嘉宾的论坛。" },
+        { en: "Secured $50K+ in sponsorship (Bank of China, Taihill Ventures) and ran VIP invitations and on-site guest reception.", zh: "争取到中国银行、Taihill Ventures 等 5 万美元以上赞助，并负责 VIP 邀请与现场嘉宾接待。" }
+      ],
+      tags: ["Event Management", "Sponsorship", "Stakeholder Relations"],
+      images: ["images/forum-1.jpg"]
+    },
+    {
+      when: { en: "2026", zh: "2026" },
+      where: { en: "Beijing · Chongqing · Nanjing · Shanghai", zh: "北京 · 重庆 · 南京 · 上海" },
+      title: { en: "Columbia SIPA China Trek 2026", zh: "哥大国际与公共事务学院中国行 2026" },
+      role: { en: "Led as GCI President", zh: "以 GCI 主席身份主导" },
+      bullets: [
+        { en: "Directed a 33-person delegation on a ¥120,000 (~$17,000) budget, visiting government, private, public and social-sector institutions such as a Xiaomi factory and CGTN.", zh: "以 12 万元人民币（约 1.7 万美元）预算带领 33 人代表团，参访小米工厂、CGTN 等政府、企业、公共与社会部门机构。" },
+        { en: "Brought the delegation into the International Department of the CPC Central Committee, the U.S. Embassy, AIIB and Schwarzman College — coordinating 30+ government, multilateral and corporate partners over a 13-day, 4-city itinerary.", zh: "带领代表团走进中联部、美国大使馆、亚投行（AIIB）和苏世民书院，在 13 天、4 座城市的行程中对接 30 多家政府、多边机构与企业伙伴。" },
+        { en: "Wrote 20+ pages of program and sponsorship materials tailored to each host institution.", zh: "撰写 20 多页项目介绍与赞助手册，为每家接待机构定制沟通材料。" },
+        { en: "Designed 3 faculty-led pre-departure sessions to address shifting geopolitical sentiment around participation.", zh: "针对地缘政治氛围变化带来的参与顾虑，设计了 3 场由教授主讲的行前说明会。" },
+        { en: "Resolved a high-stakes stakeholder conflict at a Tsinghua University / Schwarzman College partnership event.", zh: "在清华大学 / 苏世民书院合作活动中，妥善化解了一次关键的利益相关方冲突。" }
+      ],
+      tags: ["Operations", "Budgeting", "Cross-cultural"],
+      images: ["images/trek-1.jpg", "images/trek-2.jpg", "images/trek-3.jpg"]
+    }
+  ],
+
+  /* GCI 活动页：在「创业与项目」里点击 GCI 进入。每个活动可以放多张图片 */
+  gci: {
+    title: { en: "Greater China Initiative · Events", zh: "哥大国际事务中国学社 · 活动" },
+    intro: {
+      en: "As President of Columbia SIPA's Greater China Initiative, I lead a 40-person team across Alumni Relations, Business Development, Events and Marketing/PR. Below are some of the programs I planned and organized.",
+      zh: "作为哥大国际事务中国学社（GCI）主席，我带领校友关系、商务拓展、活动、市场公关四个团队共 40 人。以下是我策划和组织的部分活动。"
+    },
+    events: [
+      {
+        type: { en: "Fireside Chat", zh: "炉边对话" },
+        date: { en: "2026 · [date]", zh: "2026 ·【日期待补充】" },
+        title: { en: "Fireside Chat with David Firestein", zh: "炉边对话：方大为（David Firestein）" },
+        desc: {
+          en: "A conversation with David Firestein, President & CEO of the George H. W. Bush Foundation for U.S.-China Relations. [TODO: topic, audience size]",
+          zh: "与美国乔治·H·W·布什中美关系基金会主席兼 CEO 方大为对话。【待补充：主题、参与人数】"
+        },
+        images: ["images/gci-firestein-1.jpg", "images/gci-firestein-2.jpg"]
+      },
+      {
+        type: { en: "Fireside Chat", zh: "炉边对话" },
+        date: { en: "2026 · [date]", zh: "2026 ·【日期待补充】" },
+        title: { en: "Fireside Chat with Fred Teng", zh: "炉边对话：滕绍骏（Fred Teng）" },
+        desc: {
+          en: "A conversation with Fred Teng, President of the America China Public Affairs Institute. [TODO: topic, audience size]",
+          zh: "与美中公共事务协会会长滕绍骏对话。【待补充：主题、参与人数】"
+        },
+        images: ["images/gci-teng-1.jpg", "images/gci-teng-2.jpg"]
+      },
+      {
+        type: { en: "Fireside Chat", zh: "炉边对话" },
+        date: { en: "2026 · [date]", zh: "2026 ·【日期待补充】" },
+        title: { en: "Fireside Chat with James Chau", zh: "炉边对话：James Chau" },
+        desc: { en: "[TODO: guest intro, topic, audience size]", zh: "【待补充：嘉宾介绍、主题、参与人数】" },
+        images: ["images/gci-chau-1.jpg"]
+      },
+      {
+        type: { en: "Flagship Forum", zh: "旗舰论坛" },
+        date: { en: "2026", zh: "2026" },
+        title: { en: "Harvard-Columbia China Forum", zh: "哈佛-哥大中国论坛" },
+        desc: {
+          en: "70+ speakers, 500+ attendees and 100+ invited guests; $50K+ in sponsorship from Bank of China and Taihill Ventures.",
+          zh: "70 多位嘉宾、500 多名参会者、100 多位特邀嘉宾；获得中国银行、Taihill Ventures 等 5 万美元以上赞助。"
+        },
+        images: ["images/forum-1.jpg"]
+      },
+      {
+        type: { en: "Study Trek", zh: "游学项目" },
+        date: { en: "2026", zh: "2026" },
+        title: { en: "Columbia SIPA China Trek 2026", zh: "哥大国际与公共事务学院中国行 2026" },
+        desc: {
+          en: "A 33-person delegation across Beijing, Chongqing, Nanjing and Shanghai on a ¥120,000 budget, visiting institutions such as a Xiaomi factory, CGTN and Tsinghua University / Schwarzman College.",
+          zh: "33 人代表团走访北京、重庆、南京、上海四城，预算 12 万元人民币，参访小米工厂、CGTN、清华大学 / 苏世民书院等机构。"
+        },
+        images: ["images/trek-1.jpg", "images/trek-2.jpg", "images/trek-3.jpg"]
+      }
+    ]
+  },
+
+  skills: [
+    { group: { en: "Languages", zh: "语言" },
+      items: [{ en: "English (fluent)", zh: "英语（流利）" }, { en: "Mandarin (native)", zh: "中文（母语）" }, { en: "French (3 yrs)", zh: "法语（学习 3 年）" }, { en: "Portuguese (basic)", zh: "葡萄牙语（基础）" }, { en: "Korean (basic)", zh: "韩语（基础）" }] },
+    { group: { en: "Finance & Analysis", zh: "金融与分析" },
+      items: [{ en: "Financial & operational modeling", zh: "财务与运营建模" }, { en: "Due diligence (SEC filings)", zh: "尽职调查（SEC 文件）" }, { en: "KPI frameworks & dashboards", zh: "KPI 体系与仪表盘" }, { en: "Risk assessment", zh: "风险评估" }, { en: "Benchmarking", zh: "同业对标" }] },
+    { group: { en: "Tools", zh: "工具" },
+      items: ["Excel", "PowerPoint", "Tableau", "Power BI", "R", { en: "AI / LLM workflow design", zh: "AI / 大模型工作流设计" }] },
+    { group: { en: "Creative", zh: "创意" },
+      items: [{ en: "Graphic design", zh: "平面设计" }, { en: "Photography & videography (3,000+ followers)", zh: "摄影与视频（3000+ 粉丝）" }] },
+    { group: { en: "Beyond work", zh: "工作之外" },
+      items: [{ en: "Travel (35+ countries)", zh: "旅行（35+ 国家）" }, { en: "Piano (ABRSM Grade 8)", zh: "钢琴（英皇八级）" }, { en: "Hand-drip barista", zh: "手冲咖啡" }, { en: "Tennis", zh: "网球" }, { en: "Surfing", zh: "冲浪" }, { en: "Football", zh: "足球" }, { en: "Songwriting", zh: "写歌" }, { en: "Reading", zh: "阅读" }] }
+  ],
+
+  gallery: [
+    { src: "images/un-gala.jpg", caption: { en: "United Nations Chinese New Year Gala", zh: "联合国总部春节联欢" } },
+    { src: "images/trek-2.jpg", caption: { en: "China Trek 2026 — an official visit in Beijing", zh: "2026 中国行 · 北京参访" } },
+    { src: "images/forum-1.jpg", caption: { en: "China Forum: “China and the World — Shared Prosperity in a Changing Global Order”", zh: "中国论坛：「共塑未来——变局中的共同繁荣」" } },
+    { src: "images/unlearning-camp.jpg", caption: { en: "UnLearning summer camp, 2024", zh: "UnLearning 求知计划 2024 夏令营" } },
+    { src: "images/gci-columbia.jpg", caption: { en: "With the GCI team at Low Library", zh: "和 GCI 团队在哥大 Low Library 前" } },
+    { src: "images/trek-3.jpg", caption: { en: "On the road during China Trek", zh: "中国行路上" } }
+  ]
+};
+
+/* ---------- UI strings (通常不用改) ---------- */
+const UI = {
+  nav: {
+    home: { en: "Home", zh: "首页" }, story: { en: "Beyond the Résumé", zh: "简历之外" }, about: { en: "About", zh: "关于我" }, education: { en: "Education", zh: "教育经历" },
+    experience: { en: "Experience", zh: "工作经历" }, projects: { en: "Ventures & Projects", zh: "创业与项目" },
+    leadership: { en: "Leadership & Community", zh: "领导力与社群" }, skills: { en: "Skills", zh: "技能" },
+    gallery: { en: "Moments", zh: "影像记录" }, contact: { en: "Contact", zh: "联系" }
+  },
+  resume: { en: "Download résumé", zh: "下载简历" },
+  email: { en: "Email me", zh: "发邮件" },
+  view: { en: "View project →", zh: "查看项目 →" },
+  addPhoto: { en: "Add photo:", zh: "放入图片：" },
+  contact: {
+    title: { en: "Let's talk", zh: "保持联系" },
+    text: { en: "I'm open to internship and full-time opportunities. The fastest way to reach me is email.", zh: "我正在寻找实习和全职机会，欢迎通过邮件联系我。" }
+  },
+  prev: { en: "← Previous", zh: "← 上一部分" },
+  back: { en: "← Back to Ventures & Projects", zh: "← 返回创业与项目" },
+  seeEvents: { en: "See events I organized →", zh: "查看我策划组织的活动 →" },
+  next: { en: "Next", zh: "下一部分" },
+  footer: { en: "Built by hand · Last updated", zh: "亲手搭建 · 最近更新" }
+};
+
+/* ---------- rendering ---------- */
+let lang = "en";
+const t = v => v == null ? "" : typeof v === "string" ? v : (v[lang] ?? v.en ?? "");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const get = (o, path) => path.split(".").reduce((a, k) => a && a[k], o);
+const $ = id => document.getElementById(id);
+
+const ph = (src, cls = "") => src ? `<div class="ph zoomable ${cls}" data-img="${esc(src)}"></div>` : "";
+const tags = arr => arr && arr.length ? `<div class="tags">${arr.map(x => `<span class="tag">${esc(t(x))}</span>`).join("")}</div>` : "";
+const bullets = arr => arr && arr.length ? `<ul>${arr.map(b => `<li>${esc(t(b))}</li>`).join("")}</ul>` : "";
+
+function timelineItem(it) {
+  const pics = it.images && it.images.length ? `<div class="pics">${it.images.map(s => ph(s)).join("")}</div>` : "";
+  const link = it.detail ? `<a class="go" href="#${esc(it.detail)}">${esc(t(UI.seeEvents))}</a>` : "";
+  return `<article class="item${it.detail ? " linked" : ""}"${it.detail ? ` data-href="#${esc(it.detail)}"` : ""}>
+    <div><div class="when">${esc(t(it.when))}</div><div class="where">${esc(t(it.where))}</div></div>
+    <div><h3>${esc(t(it.title))}</h3><div class="role">${esc(t(it.role))}</div>
+      ${bullets(it.bullets)}${tags(it.tags)}${pics}${link}</div>
+  </article>`;
+}
+
+function render() {
+  document.documentElement.lang = lang;
+  document.title = `${t(SITE.name)} · ${lang === "zh" ? "个人主页" : "Portfolio"}`;
+  const all = { ...SITE, ...UI };
+  document.querySelectorAll("[data-k]").forEach(el => el.textContent = t(get(all, el.dataset.k)));
+
+  $("navlinks").innerHTML = pages().map(k => `<a href="#${k}" data-tab="${k}">${esc(t(UI.nav[k]))}</a>`).join("");
+  renderPagers();
+
+  const L = SITE.links;
+  const resume = lang === "zh" ? (L.resumeZh || L.resumeEn) : (L.resumeEn || L.resumeZh);
+  const ctas = [
+    resume && `<a class="btn primary" href="${esc(resume)}" target="_blank" rel="noopener">↓ ${esc(t(UI.resume))}</a>`,
+    L.email && `<a class="btn" href="mailto:${esc(L.email)}">✉ ${esc(t(UI.email))}</a>`,
+    L.linkedin && `<a class="btn" href="${esc(L.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`,
+    L.github && `<a class="btn" href="${esc(L.github)}" target="_blank" rel="noopener">GitHub</a>`
+  ].filter(Boolean).join("");
+  $("heroCta").innerHTML = ctas;
+  $("contactCta").innerHTML = ctas;
+  $("stats").innerHTML = (SITE.stats || []).map(s => `<div class="stat"><b>${esc(s.num)}</b><span>${esc(t(s.label))}</span></div>`).join("");
+  $("facts").innerHTML = SITE.facts.map(f => `<span>${esc(t(f))}</span>`).join("");
+
+  $("aboutBody").innerHTML = SITE.about.map(p => `<p>${esc(t(p))}</p>`).join("");
+  $("eduList").innerHTML = SITE.education.map(timelineItem).join("");
+  $("expList").innerHTML = SITE.experience.map(timelineItem).join("");
+  $("leadList").innerHTML = SITE.leadership.map(timelineItem).join("");
+
+  $("projList").innerHTML = SITE.projects.map(p => `<article class="card">
+    ${ph(p.image)}
+    <div class="body"><div class="meta">${esc(t(p.meta))}</div><h3>${esc(t(p.title))}</h3>
+      <p>${esc(t(p.desc))}</p>${bullets(p.bullets)}${tags(p.tags)}
+      ${p.link ? `<a class="more" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(t(UI.view))}</a>` : ""}
+    </div></article>`).join("");
+
+  $("gciEvents").innerHTML = (SITE.gci?.events || []).map(e => {
+    const [first, ...rest] = e.images || [];
+    return `<article class="event">${ph(first)}
+      ${rest.length ? `<div class="thumbs">${rest.map(s => ph(s)).join("")}</div>` : ""}
+      <div class="body"><span class="kind">${esc(t(e.type))}</span><div class="date">${esc(t(e.date))}</div>
+        <h3>${esc(t(e.title))}</h3><p>${esc(t(e.desc))}</p></div></article>`;
+  }).join("");
+
+  const S = SITE.story;
+  $("chapters").innerHTML = S.chapters.map((c, i) => `<article class="chapter">
+      <div class="pic">${ph(c.image)}</div>
+      <div class="txt"><div class="n">0${i + 1}</div><h3>${esc(t(c.title))}</h3><p>${esc(t(c.text))}</p>
+        ${c.caption ? `<div class="cap">${esc(t(c.caption))}</div>` : ""}</div></article>`).join("");
+  $("beliefs").innerHTML = S.beliefs.map(b => `<div class="belief"><div class="ic">${b.icon}</div><h4>${esc(t(b.title))}</h4><p>${esc(t(b.text))}</p></div>`).join("");
+  $("funfacts").innerHTML = S.facts.map(f => `<div class="fact${f.image ? "" : " noimg"}">${ph(f.image)}
+      <div class="body"><h4>${esc(t(f.title))}</h4><p>${esc(t(f.text))}</p></div></div>`).join("");
+
+  $("skillList").innerHTML = SITE.skills.map(s => `<div class="skill"><h3>${esc(t(s.group))}</h3>${tags(s.items)}</div>`).join("");
+
+  $("galleryList").innerHTML = SITE.gallery.map(g => `<figure>${ph(g.src)}<figcaption>${esc(t(g.caption))}</figcaption></figure>`).join("");
+
+
+  $("footer").textContent = `© ${new Date().getFullYear()} ${t(SITE.name)} · ${t(UI.footer)} ${document.lastModified.split(" ")[0]}`;
+
+  loadImages();
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  showPage(false);
+}
+
+/* ---------- tabs: one module per page, driven by the URL hash ---------- */
+const pages = () => [...document.querySelectorAll(".page:not([data-parent])")]
+  .map(p => p.dataset.page)
+  .filter(k => k !== "gallery" || SITE.gallery.length);
+const current = () => { const h = location.hash.slice(1) === "leadership" ? "projects" : location.hash.slice(1); return pages().includes(h) || document.querySelector(`.page[data-parent][data-page="${CSS.escape(h)}"]`) ? h : "home"; };
+
+function renderPagers() {
+  const list = pages();
+  document.querySelectorAll(".page:not([data-parent])").forEach(p => {
+    const k = p.dataset.page, i = list.indexOf(k);
+    const wraps = p.querySelectorAll(".wrap"), host = wraps[wraps.length - 1];
+    let pg = host.querySelector(".pager");
+    if (!pg) { pg = document.createElement("div"); pg.className = "pager"; host.appendChild(pg); }
+    const prev = list[i - 1], next = list[i + 1];
+    pg.innerHTML = (prev ? `<a href="#${prev}">${esc(t(UI.prev))} · ${esc(t(UI.nav[prev]))}</a>` : "") +
+                   (next ? `<a class="next" href="#${next}">${esc(t(UI.next))} · ${esc(t(UI.nav[next]))} →</a>` : "");
+  });
+}
+
+function showPage(scroll = true) {
+  const k = current();
+  document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.dataset.page === k));
+  const tab = document.querySelector(`.page[data-page="${k}"]`)?.dataset.parent || k;
+  document.querySelectorAll(".tabs a").forEach(a => {
+    const on = a.dataset.tab === tab;
+    on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current");
+    if (on) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+  });
+  if (scroll) window.scrollTo({ top: 0 });
+}
+
+function loadImages() {
+  document.querySelectorAll(".ph[data-img]").forEach(box => {
+    const src = box.dataset.img;
+    const img = new Image();
+    img.alt = "";
+    img.decoding = "async";
+    img.onload = () => { box.classList.remove("missing"); box.innerHTML = ""; box.appendChild(img); };
+    img.onerror = () => { box.classList.add("missing"); box.innerHTML = `<span>${esc(t(UI.addPhoto))}<br>${esc(src)}</span>`; };
+    img.src = src;
+  });
+}
+
+function setLang(l) {
+  lang = l === "zh" ? "zh" : "en";
+  try { localStorage.setItem("lang", lang); } catch (e) {}
+  const u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u);
+  render();
+}
+
+/* language: ?lang=zh  >  saved choice  >  browser language */
+(function init() {
+  const q = new URLSearchParams(location.search).get("lang");
+  let saved = null; try { saved = localStorage.getItem("lang"); } catch (e) {}
+  lang = q || saved || ((navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en");
+  if (lang !== "zh") lang = "en";
+  document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+
+  window.addEventListener("hashchange", () => showPage());
+
+  const lb = $("lb");
+  document.addEventListener("click", e => {
+    const img = e.target.closest(".zoomable img");
+    if (img) { lb.querySelector("img").src = img.src; lb.classList.add("open"); return; }
+    const card = e.target.closest(".item.linked");
+    if (card && !e.target.closest("a")) { location.hash = card.dataset.href; return; }
+    if (e.target.closest("#lb")) lb.classList.remove("open");
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
+
+  render();
+})();
+</script>
+</body>
+</html>
